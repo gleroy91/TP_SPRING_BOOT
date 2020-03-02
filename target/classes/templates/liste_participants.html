@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Liste des participants</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	
+	<body>
+	
+		<div>
+			<p>
+				<a href="http://localhost:8080">Accueil</a>
+				|
+				<a href="http://localhost:8080/liste_participants">Voir la liste des participants</a>
+				|
+				<a href="http://localhost:8080/gerer_participants">Gerer les participants</a>
+				|
+				<a href="http://localhost:8080/liste_evenements">Voir la liste des évènements</a>
+				|
+				<a href="http://localhost:8080/gerer_evenements">Gerer les évènements</a>
+			</p>
+		</div>
+		
+		<h1>Liste des participants</h1>
+		
+		<table>
+		    <thead>
+		        <tr>
+		            <th> Nom </th>
+		            <th> Prénom </th>
+		            <th> Email </th>
+		            <th> Date de naissance </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<tr th:if="${listeParticipants.empty}">
+		            <td colspan="4"> Pas de participants </td>
+		        </tr>
+		        <tr th:each="participant : ${listeParticipants}">
+		            <td><span th:text="${participant.nom}"> Nom </span></td>
+		            <td><span th:text="${participant.prenom}"> Prénom </span></td>
+		            <td><span th:text="${participant.email}"> Email </span></td>
+		            <td><span th:text="${participant.date_naiss}"> Date de naissance </span></td>
+		        </tr>
+		    </tbody>
+		</table>
+	</body>
+	
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>ajout des participants</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	
+	<body>
+	
+		<div>
+			<p>
+				<a href="http://localhost:8080">Accueil</a>
+				|
+				<a href="http://localhost:8080/liste_participants">Voir la liste des participants</a>
+				|
+				<a href="http://localhost:8080/gerer_participants">Gerer les participants</a>
+				|
+				<a href="http://localhost:8080/liste_evenements">Voir la liste des évènements</a>
+				|
+				<a href="http://localhost:8080/gerer_evenements">Gerer les évènements</a>
+			</p>
+		</div>
+		
+		<h1>Gestion des participants</h1>
+		
+		<h2>Ajout de participant</h2>
+		
+		<form action="http://localhost:8080/ajout_participant" method="get" class="form">
+			<div class="form-div">
+		    	<label for="nom"> Nom : </label>
+		    	<input type="text" name="nom" id="nom" required>
+		  	</div>
+		  	<div class="form-div">
+		    	<label for="prenom"> Prenom : </label>
+		    	<input type="text" name="prenom" id="prenom" required>
+		  	</div>
+		  	<div class="form-div">
+		    	<label for="email"> Email : </label>
+		    	<input type="email" name="email" id="email" required>
+		  	</div>
+		  	<div class="form-div">
+		    	<label for="date_naiss"> Date de naissance : </label>
+		    	<input type="date" name="date_naiss" id="date_naiss" required>
+		  	</div>
+		  	<div class="form-div">
+		    	<label for="date_naiss"> Evènements : </label>
+		    	<div th:if="${listeEvenements.empty}">
+		            <span> Pas d'évènements </span>
+		        </div>
+				<div th:each="evenement : ${listeEvenements}">
+				 	<label th:for="${evenement.intitule}"><span th:text="${evenement.intitule}"> Intitulé </span></label>
+				    <input type="checkbox" id="evenement" name="evenement" th:value="${evenement.num_even}">
+		        </div>
+		  	</div>
+		  	<div class="form-div">
+		    	<input type="submit" value="Ajout">
+		  	</div>
+		</form>
+
+		<h1>Liste des participants</h1>
+		
+		<table>
+		    <thead>
+		        <tr>
+		            <th> Nom </th>
+		            <th> Prénom </th>
+		            <th> Email </th>
+		            <th> Date de naissance </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<tr th:if="${listeParticipants.empty}">
+		            <td colspan="4"> Pas de participants </td>
+		        </tr>
+		        <tr th:each="participant : ${listeParticipants}">
+		            <td><span th:text="${participant.nom}"> Nom </span></td>
+		            <td><span th:text="${participant.prenom}"> Prénom </span></td>
+		            <td><span th:text="${participant.email}"> Email </span></td>
+		            <td><span th:text="${participant.date_naiss}"> Date de naissance </span></td>
+		        </tr>
+		    </tbody>
+		</table>
+	</body>
+	
+</html>

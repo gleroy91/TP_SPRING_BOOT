@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Gestion des évenements</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	
+	<body>
+	
+		<div>
+			<p>
+				<a href="http://localhost:8080">Accueil</a>
+				|
+				<a href="http://localhost:8080/liste_participants">Voir la liste des participants</a>
+				|
+				<a href="http://localhost:8080/gerer_participants">Gerer la liste des participants</a>
+				|
+				<a href="http://localhost:8080/liste_evenements">Voir la liste des évènements</a>
+				|
+				<a href="http://localhost:8080/gerer_evenements">Gerer les évènements</a>
+			</p>
+		</div>
+		
+		<h1>Gestion des évenements</h1>
+		
+		<h2>ajout d'un évenement</h2>
+		
+		<form action="http://localhost:8080/ajout_evenement" method="get" class="form">
+			<div class="form-div">
+		    	<label for="intitule"> Intitulé : </label>
+		    	<input type="text" name="intitule" id="intitule" required>
+		  	</div>
+		  	<div class="form-div">
+		    	<label for="date_debut"> Horaire : </label>
+		    	<input type="date" name="date_debut" id="date_debut" required>
+		  	</div>
+		  	<div class="form-div">
+		    	<input type="submit" value="ajout">
+		  	</div>
+		</form>
+		
+<!--
+		
+		<h2>Modifier/Supprimer un évènement</h2>
+		
+		<table>
+		    <thead>
+		        <tr>
+		            <th> Intitulé </th>
+		            <th> Horaire </th>
+		            <th> Nombre de participants </th>
+		            <th> Participants </th>
+		            <th> Modifier </th>
+		            <th> Supprimer </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<tr th:if="${listeEvenements.empty}">
+		            <td colspan="4"> Pas d'évènements </td>
+		        </tr>
+		        <tr th:each="evenement : ${listeEvenements}">
+		            <td><span th:text="${evenement.intitule}"> Intitulé </span></td>
+		            <td><span th:text="${evenement.date_debut}"> Horaire </span></td>
+		            <td><span th:text="${evenement.participants.size()}"> Nombre de participants </span></td>
+		            <td><ul th:each="participant : ${evenement.participants}"><li><span th:text="${participant.prenom}"> Participants </span></li></ul></td>
+		            <td><form th:action="@{'http://localhost:8080/modifier_evenement/'+${evenement.num_even}}"><input type="submit" value="Modifier"></form></td>
+		            <td><form th:action="@{'http://localhost:8080/supprimer_evenement/'+${evenement.num_even}}">
+		            	<div th:if="${evenement.deletable()}">
+		            		<input type="submit" value="Supprimer">
+						</div>
+						<div th:unless="${evenement.deletable()}">
+		            		<input type="submit" value="Supprimer" disabled>
+						</div>
+		            	</form></td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+-->
+
+		<h1>Liste des événements</h1>
+		
+		<table>
+		    <thead>
+		        <tr>
+		            <th> Intitulé </th>
+		            <th> Horaire </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<tr th:if="${listeEvenements.empty}">
+		            <td colspan="2"> Pas d'évènements </td>
+		        </tr>
+		        <tr th:each="evenement : ${listeEvenements}">
+		            <td><span th:text="${evenement.intitule}"> Intitulé </span></td>
+		            <td><span th:text="${evenement.date_debut}"> Horaire </span></td>
+		        </tr>
+		    </tbody>
+		
+	</body>
+	
+</html>

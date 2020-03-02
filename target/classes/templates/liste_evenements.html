@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Liste des évenements</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	
+	<body>
+	
+		<div>
+			<p>
+				<a href="http://localhost:8080">Accueil</a>
+				|
+				<a href="http://localhost:8080/liste_participants">Voir la liste des participants</a>
+				|
+				<a href="http://localhost:8080/gerer_participants">Gerer les participants</a>
+				|
+				<a href="http://localhost:8080/liste_evenements">Voir la liste des évènements</a>
+				|
+				<a href="http://localhost:8080/gerer_evenements">Gerer les évènements</a>
+			</p>
+		</div>
+		
+		<h1>Liste des événements</h1>
+		
+		<table>
+		    <thead>
+		        <tr>
+		            <th> Intitulé </th>
+		            <th> Horaire </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<tr th:if="${listeEvenements.empty}">
+		            <td colspan="2"> Pas d'évènements </td>
+		        </tr>
+		        <tr th:each="evenement : ${listeEvenements}">
+		            <td><span th:text="${evenement.intitule}"> Intitulé </span></td>
+		            <td><span th:text="${evenement.date_debut}"> Horaire </span></td>
+		        </tr>
+		    </tbody>
+		</table>
+	</body>
+	
+</html>
